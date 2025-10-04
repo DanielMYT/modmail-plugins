@@ -1,8 +1,6 @@
 import discord
 from discord.ext import commands
-from os import popen
-
-cmd = "/bin/bash plugins/DanielMYT/modmail-plugins/neofetch-master/neofetch 2>&1"
+from subprocess import check_output
 
 class Neofetch(commands.Cog):
 	def __init__(self, bot):
@@ -10,10 +8,9 @@ class Neofetch(commands.Cog):
 
 	@commands.command()
 	async def neofetch(self, ctx):
-		"Neofetch for Modmail! Neofetch program taken from Hyfetch project."
-		stream = popen(cmd)
-		output = stream.read()
-		await ctx.send(output)
+		"Neofetch plugin by DanielMYT. Neofetch program taken from Hyfetch project."
+		output = check_output(["bash", "plugins/DanielMYT/modmail-plugins/neofetch-master/neofetch"], stderr=subprocess.STDOUT, timeout=10, text=True)
+		await ctx.send("```\n" + output + "\n```")
 
 async def setup(bot):
 	await bot.add_cog(Neofetch(bot))
