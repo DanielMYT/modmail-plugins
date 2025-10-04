@@ -1,0 +1,4 @@
+#!/bin/bash
+HERE="$(readlink -f "$(dirname "$0")")"
+chmod +x "$HERE"/fastfetch.real
+"$HERE"/fastfetch.real 2>&1
