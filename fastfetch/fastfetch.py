@@ -11,7 +11,7 @@ class Fastfetch(commands.Cog):
 	async def fastfetch(self, ctx):
 		"Fastfetch plugin by DanielMYT."
 		output = check_output(["bash", "plugins/DanielMYT/modmail-plugins/fastfetch-master/fastfetch"], stderr=STDOUT, timeout=10, text=True)
-		clean_output = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])').sub('', output)
+		clean_output = compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])').sub('', output)
 		await ctx.send("```\n" + clean_output + "\n```")
 
 async def setup(bot):
