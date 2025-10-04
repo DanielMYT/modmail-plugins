@@ -11,7 +11,9 @@ class Neofetch(commands.Cog):
 	@commands.command()
 	async def neofetch(self, ctx):
 		"Neofetch for Modmail! Neofetch program taken from Hyfetch project."
-		await ctx.send(popen(cmd).read)
+		stream = popen(cmd)
+		output = stream.read()
+		await ctx.send(output)
 
 async def setup(bot):
 	await bot.add_cog(Neofetch(bot))
