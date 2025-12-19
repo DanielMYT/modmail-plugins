@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from subprocess import check_output,STDOUT,TimeoutExpired
+from subprocess import check_output,STDOUT,CalledProcessError,TimeoutExpired
 from re import compile,sub
 
 class System(commands.Cog):
@@ -27,8 +27,9 @@ class System(commands.Cog):
 		try:
 			output = check_output(full_command, stderr=STDOUT, timeout=30, text=True)
 		except TimeoutExpired:
-			await ctx.send("Sorry, the command timed out.")
-			return
+			await ctx.send("WARNING: The command timed out.")
+		except CalledProcessError:
+			await ctx.send("WARNING: The command exited with an unsuccessful exit code.")
 		# Strip out ANSI terminal characters from any output.
 		clean_output = compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])').sub('', output)
 		# Send the output.
