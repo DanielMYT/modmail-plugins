@@ -3,10 +3,6 @@ from discord.ext import commands
 from subprocess import check_output,STDOUT,TimeoutExpired
 from re import compile,sub
 
-# Install and set up bubblewrap
-print(check_output(["apt-get", "update"], stderr=STDOUT, timeout=30, text=True))
-print(check_output(["apt-get", "-y", "install", "bubblewrap"], stderr=STDOUT, timeout=30, text=True))
-
 class System(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
@@ -21,7 +17,7 @@ class System(commands.Cog):
 			await ctx.send("Sorry, the command is malformed and could not be processed.")
 			return
 		# Define the base bubblewrap command.
-		bwrap_command = ["bwrap", "--unshare-all", "--unshare-net", "--die-with-parent", "--ro-bind", "/usr", "/usr", "--ro-bind", "/bin", "/bin", "--ro-bind", "/lib", "/lib", "--ro-bind", "/lib64", "/lib64", "--proc", "/proc", "--dev", "/dev", "--tmpfs", "/tmp", "--chdir", "/tmp", "--setenv", "HOME", "/tmp", "--setenv", "PATH", "/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"]
+		bwrap_command = ["bash", "plugins/DanielMYT/modmail-plugins/system-master/bwrap.sh", "--unshare-all", "--unshare-net", "--die-with-parent", "--ro-bind", "/usr", "/usr", "--ro-bind", "/bin", "/bin", "--ro-bind", "/lib", "/lib", "--ro-bind", "/lib64", "/lib64", "--proc", "/proc", "--dev", "/dev", "--tmpfs", "/tmp", "--chdir", "/tmp", "--setenv", "HOME", "/tmp", "--setenv", "PATH", "/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"]
 		# Set up the user command by splitting into an array.
 		user_command = cmd.split(" ")
 		# Combine base command and user command for the full command.
