@@ -26,9 +26,11 @@ class System(commands.Cog):
 		output = ""
 		try:
 			output = check_output(full_command, stderr=STDOUT, timeout=30, text=True)
-		except TimeoutExpired:
+		except TimeoutExpired as e:
+			output = e.output
 			await ctx.send("WARNING: The command timed out.")
-		except CalledProcessError:
+		except CalledProcessError as e:
+			output = e.output
 			await ctx.send("WARNING: The command exited with an unsuccessful exit code.")
 		# Strip out ANSI terminal characters from any output.
 		clean_output = compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])').sub('', output)
