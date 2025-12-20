@@ -16,8 +16,8 @@ class System(commands.Cog):
 		if not clean_cmd:
 			await ctx.send("Sorry, the command is malformed and could not be processed.")
 			return
-		# Define the base bubblewrap command.
-		bwrap_command = ["bash", "plugins/DanielMYT/modmail-plugins/system-master/bwrap.sh", "--unshare-all", "--unshare-net", "--die-with-parent", "--ro-bind", "/usr", "/usr", "--ro-bind", "/bin", "/bin", "--ro-bind", "/lib", "/lib", "--ro-bind", "/lib64", "/lib64", "--proc", "/proc", "--dev", "/dev", "--tmpfs", "/tmp", "--chdir", "/tmp", "--setenv", "HOME", "/tmp", "--setenv", "PATH", "/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"]
+		# Define the base minsandbox command.
+		bwrap_command = ["bash", "plugins/DanielMYT/modmail-plugins/system-master/minsandbox.sh"]
 		# Set up the user command by splitting into an array.
 		user_command = cmd.split(" ")
 		# Combine base command and user command for the full command.
