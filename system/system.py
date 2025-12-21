@@ -25,7 +25,7 @@ class System(commands.Cog):
 		# Run the thing. Inform if the command times out.
 		output = ""
 		try:
-			output = check_output(full_command, stderr=STDOUT, timeout=15, text=True, shell=True)
+			output = check_output(full_command, stderr=STDOUT, timeout=15, text=True)
 		except TimeoutExpired as e:
 			output = e.output
 			await ctx.send("WARNING: The command timed out.")
