@@ -20,8 +20,10 @@ class System(commands.Cog):
 		bwrap_command = ["bash", "plugins/DanielMYT/modmail-plugins/system-master/minsandbox.sh"]
 		# Set up the user command by splitting into an array.
 		user_command = cmd.split(" ")
+		# Set up an end command to limit the output (TODO: Make this better).
+		end_command = ["|", "head", "-n", "100000"]
 		# Combine base command and user command for the full command.
-		full_command = bwrap_command + user_command
+		full_command = bwrap_command + user_command + end_command
 		# Run the thing. Inform if the command times out.
 		output = ""
 		try:
