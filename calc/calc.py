@@ -10,7 +10,7 @@ class Calc(commands.Cog):
         @commands.command()
         async def calc(self, ctx, *, expression):
                 "Fast and accurate calculator plugin by DanielMYT using bc."
-                output = check_output(["bash", "plugins/DanielMYT/modmail-plugins/calc/bc.sh", expression], stderr=STDOUT, timeout=3, text=True)
+                output = check_output(["bash", "plugins/DanielMYT/modmail-plugins/calc-master/bc.sh", expression], stderr=STDOUT, timeout=3, text=True)
                 plain_output = compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])').sub('', output)
                 await ctx.send(plain_output)
 
