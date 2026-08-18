@@ -10,7 +10,7 @@ class Calc(commands.Cog):
         @commands.command()
         async def calc(self, ctx, *, expression):
                 "Fast and accurate calculator plugin by DanielMYT using bc."
-                output = check_output(["bash", "plugins/DanielMYT/modmail-plugins/calc-master/bc.sh", expression], stderr=STDOUT, timeout=3, text=True)
+                output = check_output(["bash", "plugins/DanielMYT/modmail-plugins/calc-master/bc.sh", expression], stderr=STDOUT, timeout=3)
                 plain_output = compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])').sub('', output)
                 if len(plain_output) > 2000:
                         plain_output = "Please specify a lower precision. Discord can't handle this!"
