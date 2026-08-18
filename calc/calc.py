@@ -8,7 +8,7 @@ class Calc(commands.Cog):
                 self.bot = bot
 
         @commands.command()
-        async def fastfetch(self, ctx, *, expression):
+        async def calc(self, ctx, *, expression):
                 "Fast and accurate calculator plugin by DanielMYT using bc."
                 output = check_output(["bash", "plugins/DanielMYT/modmail-plugins/calc/bc.sh", expression], stderr=STDOUT, timeout=3, text=True)
                 plain_output = compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])').sub('', output)
