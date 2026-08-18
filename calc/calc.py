@@ -12,6 +12,8 @@ class Calc(commands.Cog):
                 "Fast and accurate calculator plugin by DanielMYT using bc."
                 output = check_output(["bash", "plugins/DanielMYT/modmail-plugins/calc-master/bc.sh", expression], stderr=STDOUT, timeout=3, text=True)
                 plain_output = compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])').sub('', output)
+		if len(plain_output) > 2000:
+			plain_output = "Please specify a lower precision. Discord can't handle this!"
                 await ctx.send(plain_output)
 
 async def setup(bot):
