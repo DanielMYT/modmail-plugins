@@ -2112,8 +2112,9 @@ get_packages() {
 
     # Programming language package managers.
     if [[ -z "$package_minimal" ]]; then
-        has pipx  && tot pipx list --short
-        has pip   && tot pip freeze
+        # NOTE: pip listing disabled for modmail plugin due to potential hang.
+        #has pipx  && tot pipx list --short
+        #has pip   && tot pip freeze
         has cargo && _cargopkgs="$(cargo install --list | grep -v '^ ')" && tot echo "$_cargopkgs"
 
         # Special case for npm: If has npm, we should list folders under node_modules instead of using npm list.
